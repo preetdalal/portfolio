@@ -11,7 +11,7 @@ export default function Education() {
               D. J. Sanghvi College of Engineering
             </p>
             <p className="text-sm text-ink-muted">
-              B.Tech — Information Technology · 2024–2028
+              B.Tech - Information Technology · 2024-2028
             </p>
           </div>
           <p className="font-mono text-sm text-ink-faint">CGPA 8.4 / 10</p>

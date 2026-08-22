@@ -36,7 +36,7 @@ export default function Contact() {
       </div>
       <footer className="border-t border-border-subtle">
         <div className="mx-auto max-w-content px-6 py-6 text-center font-mono text-xs text-ink-faint">
-          Preet Dalal — built with Next.js, TypeScript, Tailwind CSS
+          Preet Dalal - built with Next.js, TypeScript, Tailwind CSS
         </div>
       </footer>
     </section>

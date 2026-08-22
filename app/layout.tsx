@@ -2,12 +2,12 @@ import type { Metadata } from "next";
 import "./globals.css";
 
 export const metadata: Metadata = {
-  title: "Preet Dalal — DevOps / Cloud Engineering",
+  title: "Preet Dalal - DevOps / Cloud Engineering",
   description:
     "B.Tech IT student at DJSCE Mumbai building toward DevOps and Cloud Engineering, with a backend foundation and applied AI/ML work. Kubernetes, Docker, Spring Boot, FastAPI, PyTorch.",
   metadataBase: new URL("https://preetdalal.dev"),
   openGraph: {
-    title: "Preet Dalal — DevOps / Cloud Engineering",
+    title: "Preet Dalal - DevOps / Cloud Engineering",
     description:
       "B.Tech IT student building toward DevOps and Cloud Engineering, with a backend foundation and applied AI/ML work.",
     type: "website",
