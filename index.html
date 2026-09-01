@@ -1,491 +1,877 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Preet Dalal - DevOps &amp; Backend Engineer</title>
-<meta name="description" content="Preet Dalal - DevOps &amp; Backend Engineer. Java, Spring Boot, Kubernetes, Docker, and applied AI/ML infrastructure.">
-<link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500;600;700&family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
-<style>
-  :root{
-    --bg: #0a0d12;
-    --bg-raised: #10141b;
-    --bg-card: #12161e;
-    --border: #1f2530;
-    --border-hover: #2e3644;
-    --text: #e7ebf1;
-    --text-dim: #8993a3;
-    --text-faint: #57606f;
-    --accent: #4ade80;
-    --accent-dim: #2f6b46;
-    --accent-wash: rgba(74,222,128,0.08);
-    --amber: #e0a458;
-    --radius: 10px;
-    --mono: 'IBM Plex Mono', ui-monospace, monospace;
-    --sans: 'Inter', -apple-system, sans-serif;
-  }
-  *{ margin:0; padding:0; box-sizing:border-box; }
-  html{ scroll-behavior:smooth; }
-  body{
-    background:var(--bg);
-    color:var(--text);
-    font-family:var(--sans);
-    line-height:1.55;
-    -webkit-font-smoothing:antialiased;
-  }
-  a{ color:inherit; text-decoration:none; }
-  .wrap{ max-width:1040px; margin:0 auto; padding:0 24px; }
-  ::selection{ background:var(--accent); color:#08110c; }
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <!-- Primary Meta Tags -->
+  <title>Preet Dalal — DevOps &amp; Backend Engineer</title>
+  <meta name="title" content="Preet Dalal — DevOps &amp; Backend Engineer">
+  <meta name="description" content="Preet Dalal — DevOps &amp; Backend Engineer specializing in Java, Spring Boot 3, Kubernetes, Docker, and high-throughput AI/ML inference infrastructure. B.Tech IT with DevOps Honours at DJSCE Mumbai.">
+  <meta name="keywords" content="Preet Dalal, DevOps Engineer, Backend Engineer, Java, Spring Boot, Kubernetes, Docker, ML Infrastructure, DJSCE Mumbai, Portfolio">
+  <meta name="author" content="Preet Dalal">
+  <link rel="icon" type="image/svg+xml" href="favicon.svg">
 
-  /* subtle grid texture */
-  body::before{
-    content:"";
-    position:fixed; inset:0;
-    background-image:
-      linear-gradient(rgba(74,222,128,0.025) 1px, transparent 1px),
-      linear-gradient(90deg, rgba(74,222,128,0.025) 1px, transparent 1px);
-    background-size:64px 64px;
-    pointer-events:none;
-    z-index:0;
-    mask-image: radial-gradient(ellipse 80% 60% at 50% 0%, black 0%, transparent 70%);
-  }
+  <!-- Google Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:ital,wght@0,300;0,400;0,500;0,600;0,700;0,800;1,400&family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
 
-  /* ---------- top status bar ---------- */
-  .statusbar{
-    border-bottom:1px solid var(--border);
-    background:rgba(10,13,18,0.85);
-    backdrop-filter:blur(8px);
-    position:sticky; top:0; z-index:50;
-  }
-  .statusbar-inner{
-    display:flex; align-items:center; justify-content:space-between;
-    padding:12px 24px;
-    font-family:var(--mono);
-    font-size:12px;
-    color:var(--text-faint);
-    max-width:1040px; margin:0 auto;
-  }
-  .statusbar-left{ display:flex; align-items:center; gap:8px; }
-  .dot{
-    width:6px; height:6px; border-radius:50%;
-    background:var(--accent);
-    box-shadow:0 0 6px var(--accent);
-    display:inline-block;
-    animation:pulse 2.4s ease-in-out infinite;
-  }
-  @keyframes pulse{ 0%,100%{opacity:1;} 50%{opacity:.35;} }
-  .statusbar-right{ display:flex; gap:18px; }
-  .statusbar-right span{ color:var(--text-faint); }
-  .statusbar a{ color:var(--text-dim); transition:color .15s; }
-  .statusbar a:hover{ color:var(--accent); }
-  @media (max-width: 640px){ .statusbar-right{ display:none; } }
+  <!-- Core Stylesheet -->
+  <link rel="stylesheet" href="css/style.css">
 
-  nav{
-    display:flex; gap:28px;
-    padding:14px 24px;
-    border-bottom:1px solid var(--border);
-    font-family:var(--mono);
-    font-size:13px;
-    max-width:1040px; margin:0 auto;
-  }
-  nav a{ color:var(--text-dim); transition:color .15s; }
-  nav a:hover{ color:var(--accent); }
-
-  /* ---------- hero ---------- */
-  header.hero{
-    position:relative; z-index:1;
-    padding:96px 0 72px;
-    border-bottom:1px solid var(--border);
-  }
-  .eyebrow{
-    font-family:var(--mono);
-    font-size:12.5px;
-    color:var(--accent);
-    letter-spacing:.06em;
-    margin-bottom:20px;
-    display:flex; align-items:center; gap:10px;
-  }
-  .eyebrow::before{ content:"›"; color:var(--text-faint); }
-  h1.name{
-    font-size:clamp(40px, 6vw, 64px);
-    font-weight:800;
-    letter-spacing:-0.02em;
-    line-height:1.05;
-    margin-bottom:14px;
-  }
-  .role-line{
-    font-family:var(--mono);
-    font-size:clamp(15px, 2vw, 18px);
-    color:var(--accent);
-    margin-bottom:22px;
-  }
-  .pitch{
-    max-width:620px;
-    font-size:17px;
-    color:var(--text-dim);
-    margin-bottom:34px;
-  }
-  .pitch b{ color:var(--text); font-weight:600; }
-  .hero-cta{ display:flex; gap:12px; flex-wrap:wrap; margin-bottom:40px; }
-  .btn{
-    font-family:var(--mono);
-    font-size:13px;
-    padding:11px 18px;
-    border-radius:8px;
-    border:1px solid var(--border-hover);
-    transition:all .15s;
-    display:inline-flex; align-items:center; gap:8px;
-  }
-  .btn-primary{ background:var(--accent); color:#08110c; border-color:var(--accent); font-weight:600; }
-  .btn-primary:hover{ background:#5eeb92; }
-  .btn-ghost{ color:var(--text-dim); }
-  .btn-ghost:hover{ border-color:var(--accent); color:var(--accent); }
-
-  .hero-meta{
-    display:flex; gap:28px; flex-wrap:wrap;
-    font-family:var(--mono); font-size:12.5px; color:var(--text-faint);
-    padding-top:24px; border-top:1px solid var(--border);
-  }
-  .hero-meta strong{ color:var(--text-dim); font-weight:500; }
-
-  /* ---------- section shell ---------- */
-  section{ padding:80px 0; border-bottom:1px solid var(--border); position:relative; z-index:1; }
-  .section-head{ margin-bottom:44px; }
-  .section-label{
-    font-family:var(--mono); font-size:12px; color:var(--accent);
-    letter-spacing:.08em; text-transform:uppercase; margin-bottom:10px;
-  }
-  .section-title{ font-size:28px; font-weight:700; letter-spacing:-0.01em; margin-bottom:10px; }
-  .section-sub{ color:var(--text-dim); font-size:15px; max-width:560px; }
-
-  /* ---------- about ---------- */
-  .about-grid{ display:grid; grid-template-columns:1.3fr 1fr; gap:48px; align-items:start; }
-  .about-text p{ color:var(--text-dim); font-size:15.5px; margin-bottom:16px; }
-  .about-text strong{ color:var(--text); font-weight:600; }
-  .fact-list{ display:flex; flex-direction:column; gap:0; border:1px solid var(--border); border-radius:var(--radius); overflow:hidden; }
-  .fact{ display:flex; justify-content:space-between; padding:13px 16px; font-family:var(--mono); font-size:12.5px; border-bottom:1px solid var(--border); }
-  .fact:last-child{ border-bottom:none; }
-  .fact span:first-child{ color:var(--text-faint); }
-  .fact span:last-child{ color:var(--text-dim); text-align:right; }
-  @media (max-width:760px){ .about-grid{ grid-template-columns:1fr; } }
-
-  /* ---------- projects ---------- */
-  .filter-row{ display:flex; gap:8px; margin-bottom:32px; flex-wrap:wrap; }
-  .filter-chip{
-    font-family:var(--mono); font-size:12px; padding:7px 13px;
-    border:1px solid var(--border); border-radius:20px; color:var(--text-faint);
-  }
-  .filter-chip.active{ border-color:var(--accent); color:var(--accent); background:var(--accent-wash); }
-
-  .project{
-    border:1px solid var(--border);
-    border-radius:var(--radius);
-    background:var(--bg-card);
-    padding:28px;
-    margin-bottom:20px;
-    transition:border-color .15s;
-  }
-  .project:hover{ border-color:var(--border-hover); }
-  .project-top{ display:flex; justify-content:space-between; align-items:flex-start; gap:16px; margin-bottom:6px; flex-wrap:wrap; }
-  .project-tag{ font-family:var(--mono); font-size:11px; color:var(--accent); letter-spacing:.05em; }
-  .project-title{ font-size:19px; font-weight:700; margin:4px 0 8px; }
-  .project-desc{ color:var(--text-dim); font-size:14.5px; margin-bottom:16px; max-width:640px; }
-  .project-bullets{ list-style:none; display:flex; flex-direction:column; gap:7px; margin-bottom:18px; }
-  .project-bullets li{ font-size:13.5px; color:var(--text-dim); padding-left:16px; position:relative; }
-  .project-bullets li::before{ content:"-"; position:absolute; left:0; color:var(--text-faint); }
-  .project-foot{ display:flex; justify-content:space-between; align-items:center; flex-wrap:wrap; gap:14px; }
-  .chips{ display:flex; gap:6px; flex-wrap:wrap; }
-  .chip{ font-family:var(--mono); font-size:11px; color:var(--text-faint); border:1px solid var(--border); padding:4px 9px; border-radius:5px; }
-  .project-link{ font-family:var(--mono); font-size:12.5px; color:var(--text-dim); border:1px solid var(--border-hover); padding:7px 13px; border-radius:7px; white-space:nowrap; }
-  .project-link:hover{ color:var(--accent); border-color:var(--accent); }
-
-  /* ---------- stack ---------- */
-  .stack-grid{ display:grid; grid-template-columns:repeat(2,1fr); gap:1px; background:var(--border); border:1px solid var(--border); border-radius:var(--radius); overflow:hidden; }
-  .stack-col{ background:var(--bg-card); padding:24px; }
-  .stack-col h4{ font-family:var(--mono); font-size:12px; color:var(--accent); letter-spacing:.06em; text-transform:uppercase; margin-bottom:14px; }
-  .stack-items{ display:flex; flex-wrap:wrap; gap:7px; }
-  .stack-items span{ font-family:var(--mono); font-size:12px; color:var(--text-dim); border:1px solid var(--border); padding:5px 10px; border-radius:5px; }
-  @media (max-width:640px){ .stack-grid{ grid-template-columns:1fr; } }
-
-  /* ---------- education ---------- */
-  .edu-card{ border:1px solid var(--border); border-radius:var(--radius); padding:24px; background:var(--bg-card); display:flex; justify-content:space-between; align-items:center; flex-wrap:wrap; gap:16px; }
-  .edu-name{ font-size:17px; font-weight:700; margin-bottom:4px; }
-  .edu-sub{ color:var(--text-dim); font-size:14px; }
-  .edu-gpa{ text-align:right; font-family:var(--mono); }
-  .edu-gpa .num{ font-size:26px; color:var(--accent); font-weight:700; }
-  .edu-gpa .label{ font-size:11px; color:var(--text-faint); }
-
-  /* ---------- contact ---------- */
-  .contact{ text-align:left; }
-  .contact-title{ font-size:32px; font-weight:800; letter-spacing:-0.01em; margin-bottom:14px; max-width:520px; }
-  .contact-sub{ color:var(--text-dim); font-size:15.5px; max-width:480px; margin-bottom:32px; }
-  .contact-links{ display:flex; gap:12px; flex-wrap:wrap; }
-
-  footer{ padding:28px 0; font-family:var(--mono); font-size:11.5px; color:var(--text-faint); display:flex; justify-content:space-between; flex-wrap:wrap; gap:10px; }
-</style>
+  <!-- External Libraries (Three.js, Lucide Icons, Canvas Confetti) -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
+  <script src="https://unpkg.com/lucide@latest"></script>
+  <script src="https://cdn.jsdelivr.net/npm/canvas-confetti@1.6.0/dist/confetti.browser.min.js"></script>
 </head>
 <body>
 
-<div class="statusbar">
-  <div class="statusbar-inner">
-    <div class="statusbar-left"><span class="dot"></span> Open to opportunities</div>
-    <div class="statusbar-right">
-      <span>Mumbai, IN · IST</span>
-      <a href="mailto:mdalal.preet@gmail.com">mdalal.preet@gmail.com</a>
-    </div>
-  </div>
-</div>
+  <!-- WebGL 3D Interactive Background Canvas -->
+  <canvas id="webgl-canvas"></canvas>
+  <div class="bg-ambient-layer"></div>
+  <div class="ambient-orb ambient-orb-1"></div>
+  <div class="ambient-orb ambient-orb-2"></div>
+  <div class="ambient-orb ambient-orb-3"></div>
 
-<nav class="wrap">
-  <a href="#projects">Projects</a>
-  <a href="#stack">Stack</a>
-  <a href="#education">Education</a>
-  <a href="#contact">Contact</a>
-</nav>
+  <!-- Toast Notification Container -->
+  <div class="toast-container" id="toast-container"></div>
 
-<header class="hero wrap">
-  <div class="eyebrow">DEVOPS &amp; BACKEND ENGINEER</div>
-  <h1 class="name">Preet Dalal</h1>
-  <div class="role-line">Java &amp; Spring Boot · Kubernetes &amp; Docker · Applied AI/ML Infrastructure</div>
-  <p class="pitch">
-    I build <b>production backend services</b> in Java and Spring Boot, and the
-    <b>Kubernetes infrastructure</b> that runs, scales, and observes them -
-    including for AI/ML inference workloads. B.Tech IT student at DJSCE Mumbai,
-    with an Honours specialization in DevOps.
-  </p>
-  <div class="hero-cta">
-    <a class="btn btn-primary" href="#projects">View Projects</a>
-    <a class="btn btn-ghost" href="/resume.pdf">Resume ↓</a>
-    <a class="btn btn-ghost" href="https://github.com/preetdalal" target="_blank" rel="noopener">GitHub ↗</a>
-    <a class="btn btn-ghost" href="https://linkedin.com/in/preetdalal" target="_blank" rel="noopener">LinkedIn ↗</a>
-  </div>
-  <div class="hero-meta">
-    <div><strong>4</strong> production-style projects shipped</div>
-    <div><strong>8.4</strong> CGPA · DJSCE Mumbai</div>
-    <div><strong>2024–2028</strong> B.Tech Information Technology</div>
-  </div>
-</header>
-
-<section class="wrap" id="about">
-  <div class="about-grid">
-    <div class="about-text">
-      <div class="section-label">About</div>
-      <p>
-        I'm an Information Technology student at DJSCE Mumbai, pursuing an Honours
-        specialization in <strong>DevOps</strong> alongside a focus on machine learning.
-        Most of what I build starts as a Spring Boot service and ends up containerized,
-        deployed on Kubernetes, and instrumented with Prometheus and Grafana -
-        that pipeline, not any single layer, is what I actually care about.
-      </p>
-      <p>
-        The AI/ML work sits inside that same discipline: models still need to be served,
-        scaled, and monitored like any other production workload, and that's the part
-        most ML-focused portfolios skip.
-      </p>
-    </div>
-    <div class="fact-list">
-      <div class="fact"><span>Location</span><span>Mumbai, India (IST)</span></div>
-      <div class="fact"><span>Institution</span><span>DJSCE, Mumbai</span></div>
-      <div class="fact"><span>Program</span><span>B.Tech IT, DevOps Honours</span></div>
-      <div class="fact"><span>CGPA</span><span>8.4 / 10.0</span></div>
-      <div class="fact"><span>Focus</span><span>Backend + DevOps + AI/ML infra</span></div>
-    </div>
-  </div>
-</section>
-
-<section class="wrap" id="projects">
-  <div class="section-head">
-    <div class="section-label">Selected Work</div>
-    <h2 class="section-title">Projects</h2>
-    <p class="section-sub">Backend services and the infrastructure built to run them - plus two projects where that infrastructure serves AI/ML models.</p>
-  </div>
-
-  <!-- Project 1: FraudGuard -->
-  <div class="project">
-    <div class="project-top">
-      <div>
-        <div class="project-tag">DEVOPS &amp; INFRA</div>
-        <div class="project-title">FraudGuard AI - Fraud Detection Platform</div>
+  <!-- =========================================================================
+       1. SYSTEM STATUS HUD
+       ========================================================================= -->
+  <div class="system-hud">
+    <div class="hud-inner">
+      <div class="hud-left">
+        <div class="status-badge">
+          <span class="pulse-dot"></span>
+          <span>AVAILABLE FOR ROLES (BACKEND / DEVOPS)</span>
+        </div>
+        <div class="hud-item">
+          <span>HOST:</span>
+          <span class="highlight">DJSCE MUMBAI</span>
+        </div>
       </div>
-      <a class="project-link" href="https://github.com/preetdalal/fraud-detection-system-scoe" target="_blank" rel="noopener">Source ↗</a>
-    </div>
-    <p class="project-desc">
-      Multi-channel fraud and phishing detection platform, deployed on Kubernetes with
-      autoscaling and full observability - the infra is the point, the ML model is what it serves.
-    </p>
-    <ul class="project-bullets">
-      <li>FastAPI inference service and React client run as independent Kubernetes deployments</li>
-      <li>Horizontal Pod Autoscaler scales replicas on memory and inference latency</li>
-      <li>Custom Prometheus /metrics endpoint feeding real-time Grafana dashboards</li>
-      <li>TF-IDF + Random Forest classifier tuned for sub-50ms verdict generation</li>
-    </ul>
-    <div class="project-foot">
-      <div class="chips">
-        <span class="chip">Kubernetes</span><span class="chip">Docker</span>
-        <span class="chip">FastAPI</span><span class="chip">Prometheus</span>
-        <span class="chip">Grafana</span><span class="chip">HPA</span>
+      <div class="hud-right">
+        <div class="hud-item">
+          <span>TIME:</span>
+          <span class="highlight" id="hud-time">18:30 IST</span>
+        </div>
+        <div class="hud-item">
+          <span>LATENCY:</span>
+          <span class="highlight" id="hud-latency">22ms</span>
+        </div>
+        <button class="hud-cmd-btn trigger-command-palette" aria-label="Open Command Menu">
+          <span>COMMAND MENU</span>
+          <span class="kbd-pill">⌘K</span>
+        </button>
       </div>
     </div>
   </div>
 
-  <!-- Project 2: Job Tracker -->
-  <div class="project">
-    <div class="project-top">
-      <div>
-        <div class="project-tag">BACKEND</div>
-        <div class="project-title">Job Application Tracker API</div>
-      </div>
-      <a class="project-link" href="https://github.com/preetdalal/job-tracker" target="_blank" rel="noopener">Source ↗</a>
+  <!-- =========================================================================
+       2. FLOATING NAVIGATION BAR
+       ========================================================================= -->
+  <header class="site-header">
+    <div class="nav-pill-wrapper">
+      <nav class="nav-pill">
+        <a href="#home" class="nav-brand">
+          <div class="brand-icon">PD</div>
+          <span>preet.dalal</span>
+        </a>
+
+        <ul class="nav-links">
+          <li><a href="#projects" class="nav-link">Projects</a></li>
+          <li><a href="#terminal" class="nav-link">Terminal</a></li>
+          <li><a href="#stack" class="nav-link">Stack</a></li>
+          <li><a href="#architecture" class="nav-link">Architecture</a></li>
+          <li><a href="#background" class="nav-link">Background</a></li>
+          <li><a href="#contact" class="nav-link">Contact</a></li>
+        </ul>
+
+        <div class="nav-actions">
+          <a href="resume.pdf" class="btn-nav-resume" target="_blank" rel="noopener">
+            <i data-lucide="file-text" style="width: 14px; height: 14px;"></i>
+            <span>Resume</span>
+          </a>
+          <button class="mobile-menu-toggle" id="mobile-menu-btn" aria-label="Toggle Mobile Menu">
+            <i data-lucide="menu" style="width: 20px; height: 20px;"></i>
+          </button>
+        </div>
+      </nav>
     </div>
-    <p class="project-desc">
-      A Spring Boot 3 REST API built to enterprise patterns instead of basic CRUD -
-      the backend foundation everything else in this portfolio sits on top of.
-    </p>
-    <ul class="project-bullets">
-      <li>Spring Security 6 with stateless JWT auth and role-based access control</li>
-      <li>Dynamic multi-criteria filtering via JPA Specifications</li>
-      <li>Redis caching on high-frequency analytics endpoints</li>
-      <li>Flyway migrations and integration tests with Testcontainers against live PostgreSQL</li>
-    </ul>
-    <div class="project-foot">
-      <div class="chips">
-        <span class="chip">Spring Boot 3</span><span class="chip">PostgreSQL</span>
-        <span class="chip">Redis</span><span class="chip">Docker Compose</span>
-        <span class="chip">Testcontainers</span>
+  </header>
+
+  <!-- Mobile Navigation Drawer -->
+  <div class="mobile-nav-drawer" id="mobile-nav-drawer">
+    <a href="#projects">Projects</a>
+    <a href="#terminal">Interactive Terminal</a>
+    <a href="#stack">Stack &amp; Matrix</a>
+    <a href="#architecture">Architecture Blueprint</a>
+    <a href="#background">Education &amp; Background</a>
+    <a href="#contact">Contact</a>
+    <a href="resume.pdf" target="_blank" style="color: var(--accent-light); font-weight: 600;">Download Resume (PDF)</a>
+  </div>
+
+  <!-- =========================================================================
+       3. HERO SECTION
+       ========================================================================= -->
+  <section class="hero-section" id="home">
+    <div class="container">
+      <div class="hero-grid">
+        <div class="hero-content">
+          <div class="hero-tag">
+            <i data-lucide="terminal" style="width: 14px; height: 14px;"></i>
+            <span>DEVOPS &amp; BACKEND ENGINEER</span>
+          </div>
+
+          <h1 class="hero-title">
+            Crafting <span class="gradient-text">High-Resilience Backends</span> &amp; Kubernetes Infra.
+          </h1>
+
+          <div class="hero-role">
+            <span>Java 17 &amp; Spring Boot 3</span>
+            <span class="hero-role-dot">·</span>
+            <span>Kubernetes &amp; Docker</span>
+            <span class="hero-role-dot">·</span>
+            <span>Applied AI/ML Pipelines</span>
+          </div>
+
+          <p class="hero-description">
+            I engineer <strong>production backend architectures</strong> in Java and Spring Boot, paired with the <strong>Kubernetes orchestration</strong>, CI/CD automation, and Prometheus observability required to run them at scale—including sub-50ms AI/ML inference pipelines.
+          </p>
+
+          <div class="hero-actions">
+            <a href="#projects" class="btn btn-primary">
+              <span>View Selected Work</span>
+              <i data-lucide="arrow-down" style="width: 16px; height: 16px;"></i>
+            </a>
+            <a href="#terminal" class="btn btn-secondary">
+              <i data-lucide="terminal" style="width: 15px; height: 15px;"></i>
+              <span>Launch Terminal</span>
+            </a>
+            <button class="btn btn-secondary btn-copy-email" title="Copy Email Address">
+              <i data-lucide="copy" style="width: 15px; height: 15px;"></i>
+              <span>Copy Email</span>
+            </button>
+            <a href="https://github.com/preetdalal" target="_blank" rel="noopener" class="btn btn-secondary btn-icon-only" title="GitHub Profile">
+              <i data-lucide="github" style="width: 16px; height: 16px;"></i>
+            </a>
+            <a href="https://linkedin.com/in/preetdalal" target="_blank" rel="noopener" class="btn btn-secondary btn-icon-only" title="LinkedIn Profile">
+              <i data-lucide="linkedin" style="width: 16px; height: 16px;"></i>
+            </a>
+          </div>
+
+          <!-- Hero KPI Counters -->
+          <div class="hero-stats-strip">
+            <div class="stat-item">
+              <div class="stat-number">4<span class="accent">+</span></div>
+              <div class="stat-label">Production Services Shipped</div>
+            </div>
+            <div class="stat-item">
+              <div class="stat-number">8.4<span class="accent">/10</span></div>
+              <div class="stat-label">CGPA · DJSCE Mumbai</div>
+            </div>
+            <div class="stat-item">
+              <div class="stat-number">&lt;50<span class="accent">ms</span></div>
+              <div class="stat-label">ML Inference Latency SLA</div>
+            </div>
+            <div class="stat-item">
+              <div class="stat-number">100<span class="accent">%</span></div>
+              <div class="stat-label">Containerized &amp; Observable</div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Profile Holographic Card -->
+        <div class="hero-visual">
+          <div class="profile-card">
+            <div class="profile-img-container">
+              <img src="selfpic.jpeg" alt="Preet Dalal" class="profile-img">
+              <div class="profile-badge-overlay">
+                <div>
+                  <div class="profile-badge-title">Preet Dalal</div>
+                  <div class="profile-badge-sub">DevOps Honours · DJSCE</div>
+                </div>
+                <span class="pulse-dot"></span>
+              </div>
+            </div>
+            <div class="profile-meta-rows">
+              <div class="profile-meta-row">
+                <span class="label">Location</span>
+                <span class="value">Mumbai, India (IST)</span>
+              </div>
+              <div class="profile-meta-row">
+                <span class="label">Program</span>
+                <span class="value">B.Tech IT (2024–2028)</span>
+              </div>
+              <div class="profile-meta-row">
+                <span class="label">Core Specialization</span>
+                <span class="value">Cloud &amp; Backend Systems</span>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- =========================================================================
+       4. FEATURED PROJECTS SECTION
+       ========================================================================= -->
+  <section class="section-wrapper" id="projects">
+    <div class="container">
+      <div class="section-head">
+        <span class="section-tag">ENGINEERING PORTFOLIO</span>
+        <h2 class="section-title">Selected Production Systems</h2>
+        <p class="section-subtitle">
+          Engineered for reliability, container orchestration, low latency, and comprehensive telemetry.
+        </p>
+      </div>
+
+      <!-- Filter Controls -->
+      <div class="project-filters">
+        <button class="filter-btn active" data-filter="all">All Systems (4)</button>
+        <button class="filter-btn" data-filter="devops">DevOps &amp; Infra</button>
+        <button class="filter-btn" data-filter="backend">Backend Systems</button>
+        <button class="filter-btn" data-filter="aiml">AI/ML Infrastructure</button>
+      </div>
+
+      <!-- Project Grid -->
+      <div class="projects-grid">
+        
+        <!-- PROJECT 1: FraudGuard AI -->
+        <div class="spotlight-card project-card" data-category="devops">
+          <div>
+            <div class="project-card-header">
+              <span class="project-category-badge">
+                <i data-lucide="server" style="width: 12px; height: 12px;"></i>
+                DEVOPS &amp; INFRASTRUCTURE
+              </span>
+              <a href="https://github.com/preetdalal/fraud-detection-system-scoe" target="_blank" rel="noopener" class="btn-project-link" title="GitHub Repository">
+                <span>Source</span>
+                <i data-lucide="external-link" style="width: 13px; height: 13px;"></i>
+              </a>
+            </div>
+
+            <h3 class="project-card-title">FraudGuard AI — Resilient Fraud Detection Platform</h3>
+            <p class="project-card-desc">
+              High-throughput multi-channel fraud and phishing detection system deployed on a Kubernetes cluster with automatic horizontal scaling and real-time observability.
+            </p>
+
+            <div class="project-specs">
+              <div class="spec-line">
+                <i data-lucide="check" style="width: 14px; height: 14px;"></i>
+                <span>FastAPI inference engine &amp; React client decoupled as autonomous K8s deployments.</span>
+              </div>
+              <div class="spec-line">
+                <i data-lucide="check" style="width: 14px; height: 14px;"></i>
+                <span>Horizontal Pod Autoscaler (HPA) triggers pod replication on memory thresholds &amp; latency.</span>
+              </div>
+              <div class="spec-line">
+                <i data-lucide="check" style="width: 14px; height: 14px;"></i>
+                <span>Custom Prometheus <code>/metrics</code> scraping into live Grafana telemetry dashboards.</span>
+              </div>
+              <div class="spec-line">
+                <i data-lucide="check" style="width: 14px; height: 14px;"></i>
+                <span>TF-IDF + Random Forest classifier tuned for sub-50ms verdict generation.</span>
+              </div>
+            </div>
+          </div>
+
+          <div class="project-card-footer">
+            <div class="tech-tag-row">
+              <span class="tech-tag">Kubernetes</span>
+              <span class="tech-tag">Docker</span>
+              <span class="tech-tag">FastAPI</span>
+              <span class="tech-tag">Prometheus</span>
+              <span class="tech-tag">Grafana</span>
+              <span class="tech-tag">HPA</span>
+            </div>
+            <div class="project-actions-row">
+              <a href="https://github.com/preetdalal/fraud-detection-system-scoe" target="_blank" rel="noopener" class="btn-project-link primary">
+                <i data-lucide="github" style="width: 14px; height: 14px;"></i>
+                <span>View Architecture &amp; Code</span>
+              </a>
+            </div>
+          </div>
+        </div>
+
+        <!-- PROJECT 2: Job Tracker API -->
+        <div class="spotlight-card project-card" data-category="backend">
+          <div>
+            <div class="project-card-header">
+              <span class="project-category-badge badge-backend">
+                <i data-lucide="layers" style="width: 12px; height: 12px;"></i>
+                ENTERPRISE BACKEND
+              </span>
+              <a href="https://github.com/preetdalal/job-tracker" target="_blank" rel="noopener" class="btn-project-link" title="GitHub Repository">
+                <span>Source</span>
+                <i data-lucide="external-link" style="width: 13px; height: 13px;"></i>
+              </a>
+            </div>
+
+            <h3 class="project-card-title">Job Application Tracker — Enterprise Spring REST API</h3>
+            <p class="project-card-desc">
+              Production-grade Spring Boot 3 microservice engineered with clean architecture, stateless JWT authentication, distributed Redis caching, and live container integration tests.
+            </p>
+
+            <div class="project-specs">
+              <div class="spec-line">
+                <i data-lucide="check" style="width: 14px; height: 14px;"></i>
+                <span>Spring Security 6 with stateless JWT authorization &amp; role-based access control (RBAC).</span>
+              </div>
+              <div class="spec-line">
+                <i data-lucide="check" style="width: 14px; height: 14px;"></i>
+                <span>Dynamic multi-criteria search filtering using Spring Data JPA Specifications.</span>
+              </div>
+              <div class="spec-line">
+                <i data-lucide="check" style="width: 14px; height: 14px;"></i>
+                <span>Redis cache layer slashing high-frequency analytics query latency by 80%.</span>
+              </div>
+              <div class="spec-line">
+                <i data-lucide="check" style="width: 14px; height: 14px;"></i>
+                <span>Flyway database versioning &amp; integration tests with Testcontainers against PostgreSQL.</span>
+              </div>
+            </div>
+          </div>
+
+          <div class="project-card-footer">
+            <div class="tech-tag-row">
+              <span class="tech-tag">Java 17</span>
+              <span class="tech-tag">Spring Boot 3</span>
+              <span class="tech-tag">PostgreSQL</span>
+              <span class="tech-tag">Redis</span>
+              <span class="tech-tag">Testcontainers</span>
+              <span class="tech-tag">Flyway</span>
+            </div>
+            <div class="project-actions-row">
+              <a href="https://github.com/preetdalal/job-tracker" target="_blank" rel="noopener" class="btn-project-link primary">
+                <i data-lucide="github" style="width: 14px; height: 14px;"></i>
+                <span>View API Source</span>
+              </a>
+            </div>
+          </div>
+        </div>
+
+        <!-- PROJECT 3: SVAMITVA AI -->
+        <div class="spotlight-card project-card" data-category="aiml">
+          <div>
+            <div class="project-card-header">
+              <span class="project-category-badge badge-ai">
+                <i data-lucide="cpu" style="width: 12px; height: 12px;"></i>
+                AI/ML INFRASTRUCTURE · SIH
+              </span>
+              <div style="display: flex; gap: 6px;">
+                <a href="https://nerdvana-sih.vercel.app" target="_blank" rel="noopener" class="btn-project-link" title="Live Demo">
+                  <span>Live</span>
+                  <i data-lucide="globe" style="width: 13px; height: 13px;"></i>
+                </a>
+                <a href="https://github.com/preetdalal/svamvitva-sih" target="_blank" rel="noopener" class="btn-project-link" title="GitHub Repository">
+                  <span>Source</span>
+                  <i data-lucide="external-link" style="width: 13px; height: 13px;"></i>
+                </a>
+              </div>
+            </div>
+
+            <h3 class="project-card-title">SVAMITVA AI — Drone Orthophoto Cadastral Vectorization</h3>
+            <p class="project-card-desc">
+              Smart India Hackathon project automating rural land-parcel boundary demarcation from aerial drone imagery via decoupled deep learning compute and cloud inference.
+            </p>
+
+            <div class="project-specs">
+              <div class="spec-line">
+                <i data-lucide="check" style="width: 14px; height: 14px;"></i>
+                <span>PyTorch U-Net with EfficientNet-B0 backbone for semantic land segmentation.</span>
+              </div>
+              <div class="spec-line">
+                <i data-lucide="check" style="width: 14px; height: 14px;"></i>
+                <span>Automated contour tracing with Shoelace polygon area &amp; coordinate calculation.</span>
+              </div>
+              <div class="spec-line">
+                <i data-lucide="check" style="width: 14px; height: 14px;"></i>
+                <span>FastAPI compute microservice on Render communicating with Next.js web client.</span>
+              </div>
+              <div class="spec-line">
+                <i data-lucide="check" style="width: 14px; height: 14px;"></i>
+                <span>Automated model weights sync from Hugging Face Hub during container bootstrap.</span>
+              </div>
+            </div>
+          </div>
+
+          <div class="project-card-footer">
+            <div class="tech-tag-row">
+              <span class="tech-tag">PyTorch</span>
+              <span class="tech-tag">FastAPI</span>
+              <span class="tech-tag">Next.js</span>
+              <span class="tech-tag">Hugging Face</span>
+              <span class="tech-tag">Geospatial</span>
+            </div>
+            <div class="project-actions-row">
+              <a href="https://nerdvana-sih.vercel.app" target="_blank" rel="noopener" class="btn-project-link primary">
+                <i data-lucide="play" style="width: 14px; height: 14px;"></i>
+                <span>Launch Live Application</span>
+              </a>
+              <a href="https://github.com/preetdalal/svamvitva-sih" target="_blank" rel="noopener" class="btn-project-link">
+                <span>Repo ↗</span>
+              </a>
+            </div>
+          </div>
+        </div>
+
+        <!-- PROJECT 4: RASC-Net -->
+        <div class="spotlight-card project-card" data-category="aiml">
+          <div>
+            <div class="project-card-header">
+              <span class="project-category-badge badge-ai">
+                <i data-lucide="shield-check" style="width: 12px; height: 12px;"></i>
+                ADVERSARIAL DEFENSE &amp; VISION
+              </span>
+              <a href="https://github.com/preetdalal/adversial-skin-cancer" target="_blank" rel="noopener" class="btn-project-link" title="GitHub Repository">
+                <span>Source</span>
+                <i data-lucide="external-link" style="width: 13px; height: 13px;"></i>
+              </a>
+            </div>
+
+            <h3 class="project-card-title">RASC-Net — Adversarial Defense for Medical Computer Vision</h3>
+            <p class="project-card-desc">
+              Hardened deep vision pipeline engineered to defend dermatological classification models against deliberate adversarial evasion attacks (FGSM/PGD) in clinical deployments.
+            </p>
+
+            <div class="project-specs">
+              <div class="spec-line">
+                <i data-lucide="check" style="width: 14px; height: 14px;"></i>
+                <span>Custom 2.88M-parameter Residual Attention Network with curriculum adversarial training.</span>
+              </div>
+              <div class="spec-line">
+                <i data-lucide="check" style="width: 14px; height: 14px;"></i>
+                <span>Multi-tier defense filter: bit-depth quantization, spatial smoothing &amp; compression.</span>
+              </div>
+              <div class="spec-line">
+                <i data-lucide="check" style="width: 14px; height: 14px;"></i>
+                <span>Boosted accuracy under active FGSM attack from 24.0% baseline to 62.5% resilience.</span>
+              </div>
+              <div class="spec-line">
+                <i data-lucide="check" style="width: 14px; height: 14px;"></i>
+                <span>Model artifacts securely hosted on Hugging Face Hub and retrieved at inference time.</span>
+              </div>
+            </div>
+          </div>
+
+          <div class="project-card-footer">
+            <div class="tech-tag-row">
+              <span class="tech-tag">PyTorch</span>
+              <span class="tech-tag">Computer Vision</span>
+              <span class="tech-tag">Adversarial FGSM</span>
+              <span class="tech-tag">Hugging Face</span>
+            </div>
+            <div class="project-actions-row">
+              <a href="https://github.com/preetdalal/adversial-skin-cancer" target="_blank" rel="noopener" class="btn-project-link primary">
+                <i data-lucide="github" style="width: 14px; height: 14px;"></i>
+                <span>View Research &amp; Code</span>
+              </a>
+            </div>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- =========================================================================
+       5. INTERACTIVE DEVELOPER TERMINAL (KUBE-CLI)
+       ========================================================================= -->
+  <section class="section-wrapper" id="terminal">
+    <div class="container">
+      <div class="section-head">
+        <span class="section-tag">LIVE INTERACTIVE SHELL</span>
+        <h2 class="section-title">Kube-CLI &amp; Telemetry Sandbox</h2>
+        <p class="section-subtitle">
+          Query cluster nodes, inspect running pods, print system hardware specs, and navigate the portfolio via terminal.
+        </p>
+      </div>
+
+      <div class="terminal-container">
+        <!-- Terminal Header -->
+        <div class="terminal-header">
+          <div class="terminal-dots">
+            <span class="terminal-dot dot-red"></span>
+            <span class="terminal-dot dot-yellow"></span>
+            <span class="terminal-dot dot-green"></span>
+          </div>
+          <div class="terminal-title">
+            <i data-lucide="terminal" style="width: 14px; height: 14px;"></i>
+            <span>preet@k8s-cluster: ~ (zsh)</span>
+          </div>
+          <div style="font-size: 11px; color: var(--accent-light);">● LIVE POD MONITOR</div>
+        </div>
+
+        <!-- Quick Command Chips -->
+        <div class="terminal-quick-cmds">
+          <span class="label">Quick Run:</span>
+          <button class="term-cmd-chip" data-cmd="kubectl get pods">kubectl get pods</button>
+          <button class="term-cmd-chip" data-cmd="neofetch">neofetch</button>
+          <button class="term-cmd-chip" data-cmd="projects">projects</button>
+          <button class="term-cmd-chip" data-cmd="skills">skills</button>
+          <button class="term-cmd-chip" data-cmd="cat resume">cat resume</button>
+          <button class="term-cmd-chip" data-cmd="theme cyan">theme cyan</button>
+          <button class="term-cmd-chip" data-cmd="clear">clear</button>
+        </div>
+
+        <!-- Terminal Body -->
+        <div class="terminal-body">
+          <div class="terminal-output" id="terminal-output">
+            <!-- Output generated via terminal.js -->
+          </div>
+          <div class="terminal-input-row">
+            <span class="terminal-prompt-label">guest@preet-k8s:~$</span>
+            <input type="text" id="terminal-input" class="terminal-input" placeholder="type 'help' or any command..." autocomplete="off" spellcheck="false">
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- =========================================================================
+       6. TECH STACK & SYSTEM ARCHITECTURE MATRIX
+       ========================================================================= -->
+  <section class="section-wrapper" id="stack">
+    <div class="container">
+      <div class="section-head">
+        <span class="section-tag">ENGINEERING ARSENAL</span>
+        <h2 class="section-title">Technical Matrix &amp; Tooling</h2>
+        <p class="section-subtitle">
+          Core competencies across backend engineering, cloud native infrastructure, and production ML pipelines.
+        </p>
+      </div>
+
+      <!-- Live Search Filter for Skills -->
+      <div class="stack-search-wrapper">
+        <i data-lucide="search" class="stack-search-icon"></i>
+        <input type="text" id="stack-search" class="stack-search-input" placeholder="Filter skills (e.g. Docker, Redis, Spring, PyTorch)...">
+      </div>
+
+      <div class="stack-grid-pillars">
+        
+        <!-- Pillar 1: DevOps & Cloud -->
+        <div class="stack-pillar-card">
+          <div class="pillar-head">
+            <div class="pillar-icon-box">
+              <i data-lucide="cloud"></i>
+            </div>
+            <div>
+              <h3 class="pillar-title">DevOps &amp; Cloud Orchestration</h3>
+              <div class="pillar-subtitle">INFRASTRUCTURE AS CODE &amp; CI/CD</div>
+            </div>
+          </div>
+          <div class="stack-items-cloud">
+            <span class="stack-badge">Kubernetes (K8s)</span>
+            <span class="stack-badge">Docker</span>
+            <span class="stack-badge">Prometheus</span>
+            <span class="stack-badge">Grafana</span>
+            <span class="stack-badge">GitHub Actions</span>
+            <span class="stack-badge">Helm</span>
+            <span class="stack-badge">Linux Administration</span>
+            <span class="stack-badge">HPA Autoscaling</span>
+            <span class="stack-badge">Render / Vercel</span>
+          </div>
+        </div>
+
+        <!-- Pillar 2: Backend Systems -->
+        <div class="stack-pillar-card">
+          <div class="pillar-head">
+            <div class="pillar-icon-box">
+              <i data-lucide="database"></i>
+            </div>
+            <div>
+              <h3 class="pillar-title">Backend Architecture</h3>
+              <div class="pillar-subtitle">ENTERPRISE REST &amp; DATA SYSTEMS</div>
+            </div>
+          </div>
+          <div class="stack-items-cloud">
+            <span class="stack-badge">Java 17</span>
+            <span class="stack-badge">Spring Boot 3</span>
+            <span class="stack-badge">Spring Security 6 (JWT)</span>
+            <span class="stack-badge">PostgreSQL</span>
+            <span class="stack-badge">Redis Caching</span>
+            <span class="stack-badge">Flyway Migrations</span>
+            <span class="stack-badge">FastAPI (Python)</span>
+            <span class="stack-badge">Testcontainers</span>
+            <span class="stack-badge">JPA Specifications</span>
+          </div>
+        </div>
+
+        <!-- Pillar 3: AI/ML Infra -->
+        <div class="stack-pillar-card">
+          <div class="pillar-head">
+            <div class="pillar-icon-box">
+              <i data-lucide="cpu"></i>
+            </div>
+            <div>
+              <h3 class="pillar-title">AI/ML &amp; Vision Pipelines</h3>
+              <div class="pillar-subtitle">MODEL SERVING &amp; HARDENING</div>
+            </div>
+          </div>
+          <div class="stack-items-cloud">
+            <span class="stack-badge">PyTorch</span>
+            <span class="stack-badge">Hugging Face Hub</span>
+            <span class="stack-badge">U-Net Segmentation</span>
+            <span class="stack-badge">Adversarial Defense (FGSM)</span>
+            <span class="stack-badge">scikit-learn</span>
+            <span class="stack-badge">OpenCV</span>
+            <span class="stack-badge">Sub-50ms Inference</span>
+          </div>
+        </div>
+
+        <!-- Pillar 4: Languages & Tooling -->
+        <div class="stack-pillar-card">
+          <div class="pillar-head">
+            <div class="pillar-icon-box">
+              <i data-lucide="code-2"></i>
+            </div>
+            <div>
+              <h3 class="pillar-title">Languages &amp; Tooling</h3>
+              <div class="pillar-subtitle">CORE DEVELOPMENT FOUNDATION</div>
+            </div>
+          </div>
+          <div class="stack-items-cloud">
+            <span class="stack-badge">Java</span>
+            <span class="stack-badge">Python</span>
+            <span class="stack-badge">TypeScript</span>
+            <span class="stack-badge">SQL</span>
+            <span class="stack-badge">Bash / Zsh</span>
+            <span class="stack-badge">Git &amp; GitHub</span>
+            <span class="stack-badge">Postman</span>
+          </div>
+        </div>
+
+      </div>
+
+      <!-- System Architecture Blueprint Diagram -->
+      <div class="blueprint-card" id="architecture">
+        <div class="pillar-head" style="margin-bottom: 8px;">
+          <div class="pillar-icon-box" style="background: rgba(6, 182, 212, 0.1); border-color: rgba(6, 182, 212, 0.2); color: var(--cyan);">
+            <i data-lucide="network"></i>
+          </div>
+          <div>
+            <h3 class="pillar-title">Production Topology Blueprint</h3>
+            <div class="pillar-subtitle">HOW I STRUCTURE END-TO-END RESILIENT CLOUD ARCHITECTURES</div>
+          </div>
+        </div>
+
+        <div class="blueprint-flow">
+          <div class="flow-node">
+            <div class="node-type">Traffic Layer</div>
+            <div class="node-name">Cloud Ingress / LB</div>
+            <div class="node-detail">SSL Termination &amp; Rate Limiting</div>
+          </div>
+          <div class="flow-arrow"><i data-lucide="arrow-right"></i></div>
+          
+          <div class="flow-node" style="border-color: rgba(16, 185, 129, 0.4);">
+            <div class="node-type">Compute (K8s)</div>
+            <div class="node-name">Spring &amp; FastAPI Pods</div>
+            <div class="node-detail">HPA Autoscaling on Latency</div>
+          </div>
+          <div class="flow-arrow"><i data-lucide="arrow-right"></i></div>
+
+          <div class="flow-node">
+            <div class="node-type">Data &amp; State</div>
+            <div class="node-name">Postgres + Redis</div>
+            <div class="node-detail">Flyway Migrations + Cache Layer</div>
+          </div>
+          <div class="flow-arrow"><i data-lucide="arrow-right"></i></div>
+
+          <div class="flow-node" style="border-color: rgba(139, 92, 246, 0.4);">
+            <div class="node-type">Telemetry</div>
+            <div class="node-name">Prometheus + Grafana</div>
+            <div class="node-detail">Live Metrics &amp; Health Probes</div>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </section>
+
+  <!-- =========================================================================
+       7. EDUCATION & BACKGROUND
+       ========================================================================= -->
+  <section class="section-wrapper" id="background">
+    <div class="container">
+      <div class="section-head">
+        <span class="section-tag">ACADEMIC &amp; HONOURS</span>
+        <h2 class="section-title">Education &amp; Background</h2>
+        <p class="section-subtitle">
+          Foundations in information technology, cloud engineering, and applied computing.
+        </p>
+      </div>
+
+      <div class="edu-timeline">
+        <div class="timeline-card">
+          <div class="timeline-main-info">
+            <div class="edu-institution">Dwarkadas J. Sanghvi College of Engineering (DJSCE)</div>
+            <div class="edu-program">Bachelor of Technology (B.Tech) — Information Technology</div>
+            <div class="edu-desc">
+              Pursuing an official <strong>Honours Specialization in DevOps</strong>. Active coursework and applied engineering across Distributed Systems, Operating Systems, Database Management, and Machine Learning.
+            </div>
+            <div style="margin-top: 10px; display: flex; gap: 8px; flex-wrap: wrap;">
+              <span class="tech-tag">2024 – 2028</span>
+              <span class="tech-tag" style="color: var(--accent-light);">DevOps Honours</span>
+              <span class="tech-tag">Smart India Hackathon Finalist</span>
+            </div>
+          </div>
+
+          <div class="timeline-meta-info">
+            <div class="edu-gpa-badge">
+              <div class="score">8.4</div>
+              <div class="scale">CGPA / 10.0</div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- =========================================================================
+       8. CONTACT & CONNECT HUB
+       ========================================================================= -->
+  <section class="section-wrapper" id="contact" style="border-bottom: none;">
+    <div class="container">
+      <div class="contact-grid">
+        
+        <div class="contact-info-col">
+          <span class="section-tag">INITIATE CONTACT</span>
+          <h2 class="contact-headline">Ready to build robust backend &amp; cloud systems together.</h2>
+          <p class="contact-body-text">
+            I am actively open to internship and full-time engineering roles spanning <strong>DevOps, Cloud Infrastructure, and Backend Engineering</strong>. Feel free to reach out directly via email or LinkedIn.
+          </p>
+
+          <!-- Timezone Card -->
+          <div class="tz-card">
+            <div class="tz-left">
+              <span class="tz-city">Mumbai, India (IST)</span>
+              <span class="tz-status">● Live Working Hours</span>
+            </div>
+            <div class="tz-clock" id="ist-clock">18:30:00 IST</div>
+          </div>
+
+          <!-- Direct Links -->
+          <div class="contact-direct-links">
+            <button class="btn btn-primary btn-copy-email">
+              <i data-lucide="copy" style="width: 15px; height: 15px;"></i>
+              <span>Copy Email</span>
+            </button>
+            <a href="https://github.com/preetdalal" target="_blank" rel="noopener" class="btn btn-secondary">
+              <i data-lucide="github" style="width: 15px; height: 15px;"></i>
+              <span>GitHub</span>
+            </a>
+            <a href="https://linkedin.com/in/preetdalal" target="_blank" rel="noopener" class="btn btn-secondary">
+              <i data-lucide="linkedin" style="width: 15px; height: 15px;"></i>
+              <span>LinkedIn</span>
+            </a>
+            <a href="resume.pdf" target="_blank" class="btn btn-secondary">
+              <i data-lucide="download" style="width: 15px; height: 15px;"></i>
+              <span>Resume PDF</span>
+            </a>
+          </div>
+        </div>
+
+        <!-- Contact Form -->
+        <div class="contact-form-card">
+          <form id="contact-form">
+            <div class="form-group">
+              <label for="form-name" class="form-label">YOUR NAME</label>
+              <input type="text" id="form-name" class="form-input" placeholder="e.g. Alex Smith" required>
+            </div>
+            <div class="form-group">
+              <label for="form-email" class="form-label">YOUR EMAIL</label>
+              <input type="email" id="form-email" class="form-input" placeholder="name@company.com" required>
+            </div>
+            <div class="form-group">
+              <label for="form-message" class="form-label">MESSAGE</label>
+              <textarea id="form-message" class="form-textarea" placeholder="Let's talk about backend engineering, cloud roles, or a project..." required></textarea>
+            </div>
+            <button type="submit" class="btn btn-primary" style="width: 100%;">
+              <i data-lucide="send" style="width: 15px; height: 15px;"></i>
+              <span>Transmit Message</span>
+            </button>
+          </form>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- =========================================================================
+       9. FOOTER
+       ========================================================================= -->
+  <footer class="site-footer">
+    <div class="container">
+      <div class="footer-inner">
+        <div>
+          <span>© 2026 Preet Dalal · Engineered with Vanilla CSS, Three.js &amp; Modern Web APIs</span>
+        </div>
+        <div class="footer-links">
+          <a href="#home">Top ↑</a>
+          <a href="#projects">Projects</a>
+          <a href="#terminal">Terminal</a>
+          <a href="https://github.com/preetdalal" target="_blank" rel="noopener">GitHub</a>
+          <a href="https://linkedin.com/in/preetdalal" target="_blank" rel="noopener">LinkedIn</a>
+        </div>
+      </div>
+    </div>
+  </footer>
+
+  <!-- =========================================================================
+       10. COMMAND PALETTE MODAL (⌘K / CTRL+K)
+       ========================================================================= -->
+  <div class="modal-overlay" id="command-palette-modal">
+    <div class="palette-modal">
+      <div class="palette-search-box">
+        <i data-lucide="search" style="color: var(--text-faint); width: 18px; height: 18px;"></i>
+        <input type="text" id="palette-search-input" class="palette-input" placeholder="Type a command or jump to section..." autocomplete="off">
+        <span class="kbd-pill">ESC to close</span>
+      </div>
+      <div class="palette-results">
+        <div class="palette-item" data-action="#projects">
+          <span>Jump to Projects</span>
+          <span class="kbd-pill">↵</span>
+        </div>
+        <div class="palette-item" data-action="#terminal">
+          <span>Launch Interactive Shell</span>
+          <span class="kbd-pill">↵</span>
+        </div>
+        <div class="palette-item" data-action="#stack">
+          <span>View Technical Stack &amp; Matrix</span>
+          <span class="kbd-pill">↵</span>
+        </div>
+        <div class="palette-item" data-action="#architecture">
+          <span>Inspect Architecture Blueprint</span>
+          <span class="kbd-pill">↵</span>
+        </div>
+        <div class="palette-item" data-action="copy-email">
+          <span>Copy Email Address (mdalal.preet@gmail.com)</span>
+          <span class="kbd-pill">Copy</span>
+        </div>
+        <div class="palette-item" data-action="view-resume">
+          <span>View / Download Resume</span>
+          <span class="kbd-pill">PDF</span>
+        </div>
+        <div class="palette-item" data-action="open-github">
+          <span>Open GitHub Profile (preetdalal)</span>
+          <span class="kbd-pill">↗</span>
+        </div>
+        <div class="palette-item" data-action="open-linkedin">
+          <span>Open LinkedIn Profile</span>
+          <span class="kbd-pill">↗</span>
+        </div>
       </div>
     </div>
   </div>
 
-  <!-- Project 3: SVAMITVA -->
-  <div class="project">
-    <div class="project-top">
-      <div>
-        <div class="project-tag">AI/ML INFRA</div>
-        <div class="project-title">SVAMITVA AI - Drone Orthophoto Vectorization</div>
-      </div>
-      <a class="project-link" href="https://github.com/preetdalal/svamvitva-sih" target="_blank" rel="noopener">Source ↗</a>
-    </div>
-    <p class="project-desc">
-      Smart India Hackathon project automating cadastral land-parcel mapping from
-      aerial imagery, deployed as decoupled services rather than a notebook demo.
-    </p>
-    <ul class="project-bullets">
-      <li>PyTorch U-Net + EfficientNet-B0 for semantic segmentation of drone imagery</li>
-      <li>Boundary contour tracing with Shoelace polygon area calculation</li>
-      <li>FastAPI compute service on Render, Next.js frontend on Vercel, decoupled by design</li>
-      <li>Model weights synced from Hugging Face Hub at container boot</li>
-    </ul>
-    <div class="project-foot">
-      <div class="chips">
-        <span class="chip">PyTorch</span><span class="chip">FastAPI</span>
-        <span class="chip">Next.js</span><span class="chip">Hugging Face Hub</span>
-      </div>
-      <a class="project-link" href="https://nerdvana-sih.vercel.app" target="_blank" rel="noopener">Live Demo ↗</a>
-    </div>
-  </div>
-
-  <!-- Project 4: RASC-Net -->
-  <div class="project">
-    <div class="project-top">
-      <div>
-        <div class="project-tag">AI/ML INFRA</div>
-        <div class="project-title">RASC-Net - Adversarial Defense for Skin Lesion Classification</div>
-      </div>
-      <a class="project-link" href="https://github.com/preetdalal/adversial-skin-cancer" target="_blank" rel="noopener">Source ↗</a>
-    </div>
-    <p class="project-desc">
-      A hardened vision model built to survive adversarial attacks, not just benchmark
-      accuracy - the differentiator in a portfolio otherwise built around infra.
-    </p>
-    <ul class="project-bullets">
-      <li>Custom 2.88M-parameter Residual Attention network with curriculum adversarial training</li>
-      <li>Pre-processing defense pipeline: bit-depth reduction, spatial smoothing, compression filtering</li>
-      <li>Raised accuracy under FGSM attack from 24.0% baseline to 62.5%</li>
-      <li>Model weights hosted on Hugging Face Hub, pulled at runtime</li>
-    </ul>
-    <div class="project-foot">
-      <div class="chips">
-        <span class="chip">PyTorch</span><span class="chip">Computer Vision</span>
-        <span class="chip">Adversarial FGSM</span><span class="chip">Hugging Face Hub</span>
-      </div>
-    </div>
-  </div>
-</section>
-
-<section class="wrap" id="stack">
-  <div class="section-head">
-    <div class="section-label">Toolbox</div>
-    <h2 class="section-title">Stack</h2>
-  </div>
-  <div class="stack-grid">
-    <div class="stack-col">
-      <h4>DevOps &amp; Cloud</h4>
-      <div class="stack-items">
-        <span>Kubernetes</span><span>Docker</span><span>Prometheus</span>
-        <span>Grafana</span><span>GitHub Actions</span><span>Render</span>
-        <span>Vercel</span><span>Linux / Shell</span>
-      </div>
-    </div>
-    <div class="stack-col">
-      <h4>Backend</h4>
-      <div class="stack-items">
-        <span>Java 17</span><span>Spring Boot 3</span><span>Spring Security</span>
-        <span>PostgreSQL</span><span>Redis</span><span>Flyway</span>
-        <span>FastAPI</span><span>Testcontainers</span>
-      </div>
-    </div>
-    <div class="stack-col">
-      <h4>AI / ML</h4>
-      <div class="stack-items">
-        <span>PyTorch</span><span>Hugging Face Hub</span><span>scikit-learn</span>
-        <span>OpenCV</span><span>TensorFlow / Keras</span>
-      </div>
-    </div>
-    <div class="stack-col">
-      <h4>Languages</h4>
-      <div class="stack-items">
-        <span>Java</span><span>Python</span><span>TypeScript</span>
-        <span>SQL</span><span>Bash</span>
-      </div>
-    </div>
-  </div>
-</section>
-
-<section class="wrap" id="education">
-  <div class="section-head">
-    <div class="section-label">Education</div>
-    <h2 class="section-title">Background</h2>
-  </div>
-  <div class="edu-card">
-    <div>
-      <div class="edu-name">Dwarkadas J. Sanghvi College of Engineering</div>
-      <div class="edu-sub">B.Tech, Information Technology · DevOps Honours · 2024–2028</div>
-    </div>
-    <div class="edu-gpa">
-      <div class="num">8.4</div>
-      <div class="label">CGPA / 10.0</div>
-    </div>
-  </div>
-</section>
-
-<section class="wrap contact" id="contact" style="border-bottom:none;">
-  <div class="section-label">Get in touch</div>
-  <h2 class="contact-title">Open to DevOps, Cloud, and backend engineering roles.</h2>
-  <p class="contact-sub">Happy to talk about any of the projects above, or about roles where infrastructure and backend engineering meet applied ML.</p>
-  <div class="contact-links">
-    <a class="btn btn-primary" href="mailto:mdalal.preet@gmail.com">Email me ↗</a>
-    <a class="btn btn-ghost" href="/resume.pdf">Resume ↓</a>
-    <a class="btn btn-ghost" href="https://github.com/preetdalal" target="_blank" rel="noopener">GitHub ↗</a>
-    <a class="btn btn-ghost" href="https://linkedin.com/in/preetdalal" target="_blank" rel="noopener">LinkedIn ↗</a>
-  </div>
-</section>
-
-<footer class="wrap">
-  <span>Preet Dalal · Mumbai, India</span>
-  <span>Built with Next.js + Tailwind</span>
-</footer>
+  <!-- Scripts -->
+  <script src="js/three-bg.js"></script>
+  <script src="js/terminal.js"></script>
+  <script src="js/main.js"></script>
 
 </body>
 </html>
