@@ -88,7 +88,7 @@ export const TERMINAL_COMMANDS: Record<string, () => string[]> = {
   ],
 
   "skills": () => [
-    "Preet Dalal — Technical Capabilities:",
+    "Preet Dalal - Technical Capabilities:",
     "  • DevOps / Cloud: Kubernetes, Docker, Helm, HPA, Multi-stage builds, Ingress NGINX",
     "  • CI/CD & SRE: GitHub Actions, Trivy scanner, Prometheus, Grafana, Alertmanager",
     "  • Backend Microservices: Java 17, Spring Boot 3, FastAPI (Python), PostgreSQL, Redis",

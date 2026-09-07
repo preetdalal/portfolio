@@ -24,7 +24,7 @@ const jetbrainsMono = JetBrains_Mono({
 });
 
 export const metadata: Metadata = {
-  title: "Preet Dalal — DevOps, Cloud & MLOps Infrastructure Engineer",
+  title: "Preet Dalal - DevOps, Cloud & MLOps Infrastructure Engineer",
   description:
     "Preet Dalal - IT Student at DJSCE Mumbai with Honours in DevOps & Cloud Engineering. Specializing in Kubernetes orchestration, CI/CD automation, production telemetry with Prometheus/Grafana, and applied MLOps pipelines.",
   icons: {
@@ -39,7 +39,7 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en" className={`${spaceGrotesk.variable} ${plusJakarta.variable} ${jetbrainsMono.variable}`}>
-      <body className="bg-[#080a0f] text-[#f1f5f9] min-h-screen relative selection:bg-brand-cobalt selection:text-white">
+      <body className="bg-[#090a0d] text-[#f1f5f9] min-h-screen relative selection:bg-accent-cobalt selection:text-white">
         {children}
       </body>
     </html>
