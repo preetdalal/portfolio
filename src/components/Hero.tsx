@@ -1,16 +1,15 @@
 'use client';
 
 import React from 'react';
-import Image from 'next/image';
-import { Mail, Linkedin, Github, Phone, ArrowDown } from 'lucide-react';
+import { Mail, Linkedin, Github, Phone } from 'lucide-react';
 
 export default function Hero() {
   return (
     <section className="py-16 sm:py-24 border-b border-white/[0.07]" id="home">
       <div className="max-w-4xl mx-auto px-6">
-        <div className="flex flex-col-reverse sm:flex-row items-start sm:items-center justify-between gap-8 mb-8">
+        <div className="flex flex-col items-start gap-6 mb-8">
           
-          <div className="max-w-2xl">
+          <div className="max-w-3xl">
             <h1 className="font-heading text-4xl sm:text-5xl font-bold text-white tracking-tight mb-2">
               Preet Dalal
             </h1>
@@ -56,19 +55,6 @@ export default function Hero() {
                 <Phone className="w-3.5 h-3.5 text-accent-sky" />
                 <span>+91 9920629808</span>
               </a>
-            </div>
-          </div>
-
-          {/* Profile Photo */}
-          <div className="shrink-0">
-            <div className="w-24 h-24 sm:w-32 sm:h-32 rounded-xl overflow-hidden border border-white/15 bg-bg-card shadow-lg relative">
-              <Image
-                src="/selfpic.jpeg"
-                alt="Preet Dalal"
-                fill
-                className="object-cover"
-                priority
-              />
             </div>
           </div>
 
