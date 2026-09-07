@@ -1,19 +1,17 @@
 'use client';
 
 import React, { useState } from 'react';
-import { PROJECTS, Project } from '@/data/projects';
-import ManifestModal from './ManifestModal';
-import { GitBranch, ExternalLink, FileCode, CheckCircle } from 'lucide-react';
+import { PROJECTS } from '@/data/projects';
+import { ExternalLink, Github } from 'lucide-react';
 
 export default function ProjectsGrid() {
   const [activeFilter, setActiveFilter] = useState<string>('all');
-  const [selectedManifest, setSelectedManifest] = useState<{ title: string; code: string } | null>(null);
 
   const filters = [
-    { id: 'all', label: 'All Projects' },
-    { id: 'devops', label: 'DevOps & Infrastructure' },
-    { id: 'backend', label: 'Backend Microservices' },
-    { id: 'aiml', label: 'Applied ML / MLOps' },
+    { id: 'all', label: 'All' },
+    { id: 'devops', label: 'DevOps & Cloud' },
+    { id: 'backend', label: 'Backend Systems' },
+    { id: 'aiml', label: 'Applied MLOps' },
   ];
 
   const filteredProjects = PROJECTS.filter((p) => {
@@ -22,35 +20,36 @@ export default function ProjectsGrid() {
   });
 
   return (
-    <section className="relative z-10 py-20 border-b border-white/[0.08]" id="projects">
-      <div className="max-w-6xl mx-auto px-6">
-        <div className="flex flex-col mb-8">
-          <span className="font-mono text-xs font-semibold text-brand-ice uppercase tracking-wider px-3 py-1 rounded bg-brand-ice/10 border border-brand-ice/20 w-fit mb-3">
-            Production Implementations
-          </span>
-          <h2 className="font-heading text-3xl sm:text-4xl font-bold text-white tracking-tight mb-2">
-            Engineered Projects &amp; Deployments
-          </h2>
-          <p className="text-slate-300 text-base sm:text-lg max-w-3xl leading-relaxed">
-            Production systems, containerized microservices, and MLOps deployment architectures. Inspect deployment manifests and Docker configurations directly.
-          </p>
-        </div>
+    <section className="py-20 border-b border-white/[0.07]" id="projects">
+      <div className="max-w-5xl mx-auto px-6">
+        
+        {/* Section Header */}
+        <div className="flex flex-col md:flex-row md:items-end justify-between gap-6 mb-10">
+          <div>
+            <span className="text-xs font-mono font-semibold text-accent-sky uppercase tracking-wider block mb-2">
+              Featured Work
+            </span>
+            <h2 className="font-heading text-3xl sm:text-4xl font-bold text-white tracking-tight">
+              Engineered Projects
+            </h2>
+          </div>
 
-        {/* Filter Buttons */}
-        <div className="flex flex-wrap items-center gap-2.5 mb-10">
-          {filters.map((f) => (
-            <button
-              key={f.id}
-              onClick={() => setActiveFilter(f.id)}
-              className={`font-mono text-xs sm:text-sm px-4 py-2 rounded transition-all duration-150 cursor-pointer ${
-                activeFilter === f.id
-                  ? 'border border-brand-ice bg-brand-ice/10 text-brand-ice font-semibold shadow-[0_0_12px_rgba(56,189,248,0.2)]'
-                  : 'border border-white/[0.08] bg-white/[0.03] text-slate-300 hover:text-white hover:border-white/20'
-              }`}
-            >
-              {f.label}
-            </button>
-          ))}
+          {/* Filter Tabs */}
+          <div className="flex items-center gap-1.5 overflow-x-auto p-1 bg-[#12151c] rounded-lg border border-white/[0.08] w-fit">
+            {filters.map((f) => (
+              <button
+                key={f.id}
+                onClick={() => setActiveFilter(f.id)}
+                className={`px-3.5 py-1.5 rounded-md text-xs font-mono font-medium transition-colors cursor-pointer whitespace-nowrap ${
+                  activeFilter === f.id
+                    ? 'bg-accent-cobalt text-white shadow-sm'
+                    : 'text-slate-400 hover:text-slate-200'
+                }`}
+              >
+                {f.label}
+              </button>
+            ))}
+          </div>
         </div>
 
         {/* Projects Grid */}
@@ -58,108 +57,73 @@ export default function ProjectsGrid() {
           {filteredProjects.map((project) => (
             <div
               key={project.id}
-              className="bg-bg-card border border-white/[0.08] rounded-xl p-6 sm:p-7 flex flex-col justify-between shadow-card hover:border-brand-ice/40 hover:-translate-y-1 transition-all duration-200 group"
+              className="bg-bg-card border border-white/[0.07] rounded-xl p-6 sm:p-7 flex flex-col justify-between hover:border-white/20 transition-all duration-200"
             >
               <div>
-                <div className="font-mono text-xs font-semibold text-brand-ice tracking-wider mb-2 flex items-center justify-between">
-                  <span>{project.categoryLabel}</span>
-                  {project.githubUrl && (
-                    <a
-                      href={project.githubUrl}
-                      target="_blank"
-                      rel="noopener noreferrer"
-                      className="text-slate-400 hover:text-brand-ice flex items-center gap-1 text-[11px]"
-                    >
-                      <span>GitHub</span>
-                      <ExternalLink className="w-3 h-3" />
-                    </a>
-                  )}
+                <div className="flex items-center justify-between mb-3">
+                  <span className="text-xs font-mono text-accent-sky font-semibold tracking-wider">
+                    {project.categoryLabel}
+                  </span>
+                  <div className="flex items-center gap-3">
+                    {project.githubUrl && (
+                      <a
+                        href={project.githubUrl}
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        className="text-slate-400 hover:text-white transition-colors"
+                        title="View GitHub Repository"
+                      >
+                        <Github className="w-4 h-4" />
+                      </a>
+                    )}
+                    {project.liveUrl && (
+                      <a
+                        href={project.liveUrl}
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        className="text-slate-400 hover:text-white transition-colors"
+                        title="View Live Site"
+                      >
+                        <ExternalLink className="w-4 h-4" />
+                      </a>
+                    )}
+                  </div>
                 </div>
 
-                <h3 className="font-heading text-xl sm:text-2xl font-bold text-white mb-3 group-hover:text-brand-light transition-colors leading-snug">
+                <h3 className="font-heading text-xl font-bold text-white mb-2 leading-snug">
                   {project.title}
                 </h3>
 
-                <p className="text-slate-300 text-sm sm:text-base leading-relaxed mb-4">
+                <p className="text-slate-400 text-sm leading-relaxed mb-4">
                   {project.summary}
                 </p>
 
                 <ul className="space-y-2 mb-6">
                   {project.points.map((pt, i) => (
-                    <li key={i} className="text-xs sm:text-sm text-slate-300 leading-relaxed flex items-start gap-2">
-                      <span className="text-brand-ice font-bold">›</span>
+                    <li key={i} className="text-xs text-slate-300 flex items-start gap-2 leading-relaxed">
+                      <span className="text-accent-sky font-bold">›</span>
                       <span>{pt}</span>
                     </li>
                   ))}
                 </ul>
               </div>
 
-              {/* Card Footer */}
-              <div className="pt-4 border-t border-white/[0.08] flex flex-col gap-4">
-                <div className="flex flex-wrap gap-1.5">
-                  {project.tags.map((tag) => (
-                    <span
-                      key={tag}
-                      className="font-mono text-[11px] text-slate-400 bg-white/[0.03] border border-white/[0.06] px-2.5 py-0.5 rounded"
-                    >
-                      {tag}
-                    </span>
-                  ))}
-                </div>
-
-                <div className="flex flex-wrap items-center gap-2.5">
-                  {project.manifestCode && (
-                    <button
-                      onClick={() =>
-                        setSelectedManifest({
-                          title: project.manifestTitle || 'Deployment Manifest',
-                          code: project.manifestCode || '',
-                        })
-                      }
-                      className="font-mono text-xs font-semibold px-3 py-1.5 rounded bg-brand-sky/10 border border-brand-sky/30 text-brand-light hover:bg-brand-sky/20 hover:text-white transition-all flex items-center gap-1.5 cursor-pointer"
-                    >
-                      <FileCode className="w-3.5 h-3.5" />
-                      <span>{project.manifestType === 'dockerfile' ? 'View Dockerfile ⚙' : 'View K8s Manifest ⚙'}</span>
-                    </button>
-                  )}
-
-                  {project.githubUrl && (
-                    <a
-                      href={project.githubUrl}
-                      target="_blank"
-                      rel="noopener noreferrer"
-                      className="font-mono text-xs font-semibold px-3 py-1.5 rounded bg-brand-ice/10 border border-brand-ice/30 text-brand-ice hover:bg-brand-ice/20 transition-all flex items-center gap-1"
-                    >
-                      <span>Repository</span>
-                      <span>↗</span>
-                    </a>
-                  )}
-
-                  {project.liveUrl && (
-                    <a
-                      href={project.liveUrl}
-                      target="_blank"
-                      rel="noopener noreferrer"
-                      className="font-mono text-xs font-semibold px-3 py-1.5 rounded bg-white/[0.04] border border-white/20 text-slate-200 hover:border-brand-ice hover:text-brand-ice transition-all flex items-center gap-1"
-                    >
-                      <span>Live App</span>
-                      <span>↗</span>
-                    </a>
-                  )}
-                </div>
+              {/* Tags */}
+              <div className="pt-4 border-t border-white/[0.07] flex flex-wrap gap-1.5">
+                {project.tags.map((tag) => (
+                  <span
+                    key={tag}
+                    className="text-[11px] font-mono text-slate-400 bg-white/[0.03] border border-white/[0.06] px-2 py-0.5 rounded"
+                  >
+                    {tag}
+                  </span>
+                ))}
               </div>
             </div>
           ))}
         </div>
-      </div>
 
-      {/* Manifest Modal */}
-      <ManifestModal
-        isOpen={Boolean(selectedManifest)}
-        onClose={() => setSelectedManifest(null)}
-        title={selectedManifest?.title}
-        code={selectedManifest?.code}
-      />
+      </div>
     </section>
   );
 }

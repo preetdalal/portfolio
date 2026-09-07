@@ -1,7 +1,7 @@
 'use client';
 
 import React, { useState } from 'react';
-import { Mail, Copy, Check, Send, Github, Linkedin, FileText } from 'lucide-react';
+import { Mail, Copy, Check, Send, Github, FileText } from 'lucide-react';
 
 export default function Contact() {
   const [copied, setCopied] = useState<boolean>(false);
@@ -24,48 +24,52 @@ export default function Contact() {
   };
 
   return (
-    <section className="relative z-10 py-20 border-b border-white/[0.08] bg-bg-sectionAlt" id="contact">
-      <div className="max-w-6xl mx-auto px-6">
-        <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 items-start">
+    <section className="py-20 border-b border-white/[0.07] bg-bg-alt" id="contact">
+      <div className="max-w-5xl mx-auto px-6">
+        
+        {/* Section Header */}
+        <div className="mb-10">
+          <span className="text-xs font-mono font-semibold text-accent-sky uppercase tracking-wider block mb-2">
+            Get in Touch
+          </span>
+          <h2 className="font-heading text-3xl sm:text-4xl font-bold text-white tracking-tight">
+            Let&apos;s Connect
+          </h2>
+        </div>
+
+        {/* Contact Layout */}
+        <div className="grid grid-cols-1 md:grid-cols-12 gap-10 items-start">
           
-          {/* Left Column */}
-          <div className="lg:col-span-6 flex flex-col items-start">
-            <span className="font-mono text-xs font-semibold text-brand-ice uppercase tracking-wider px-3 py-1 rounded bg-brand-ice/10 border border-brand-ice/20 mb-4">
-              Get in Touch
-            </span>
-
-            <h2 className="font-heading text-3xl sm:text-4xl font-bold text-white tracking-tight mb-4 leading-snug">
-              Open to Backend, DevOps &amp; MLOps roles.
-            </h2>
-
-            <p className="text-slate-300 text-base sm:text-lg leading-relaxed mb-8">
-              Whether you are architecting a high-throughput microservice backend, migrating clusters to Kubernetes, setting up Prometheus/Grafana SRE observability, or operationalizing ML inference models—let&apos;s build resilient systems together.
+          {/* Left Info */}
+          <div className="md:col-span-5 flex flex-col">
+            <p className="text-slate-400 text-base leading-relaxed mb-6 font-sans">
+              I am open to software engineering internships, backend development, and cloud/DevOps roles. Feel free to reach out directly via email or drop a message using the form.
             </p>
 
-            <div className="flex flex-wrap items-center gap-3 mb-8">
+            <div className="flex flex-col gap-3 mb-8">
               <button
                 onClick={handleCopyEmail}
-                className="font-mono text-xs sm:text-sm font-semibold px-4 py-2.5 rounded bg-brand-ice/10 border border-brand-ice/30 text-brand-ice hover:bg-brand-ice/20 transition-all duration-150 flex items-center gap-2 cursor-pointer shadow-[0_0_12px_rgba(56,189,248,0.15)]"
+                className="w-fit font-mono text-xs font-medium px-3.5 py-2.5 rounded-lg bg-bg-card border border-white/10 hover:border-accent-blue text-slate-200 hover:text-white transition-all flex items-center gap-2 cursor-pointer"
               >
-                {copied ? <Check className="w-4 h-4 text-telemetry-green" /> : <Copy className="w-4 h-4" />}
-                <span>{copied ? 'Email Copied to Clipboard!' : 'Copy mdalal.preet@gmail.com'}</span>
+                {copied ? <Check className="w-4 h-4 text-emerald-400" /> : <Copy className="w-4 h-4 text-slate-400" />}
+                <span>{copied ? 'Copied to Clipboard!' : 'mdalal.preet@gmail.com'}</span>
               </button>
 
               <a
                 href="mailto:mdalal.preet@gmail.com"
-                className="font-mono text-xs sm:text-sm font-semibold px-4 py-2.5 rounded bg-white/[0.04] border border-white/20 text-white hover:border-brand-ice hover:text-brand-ice transition-all duration-150 flex items-center gap-2"
+                className="w-fit font-mono text-xs font-medium px-3.5 py-2.5 rounded-lg bg-white/[0.03] hover:bg-white/[0.06] border border-white/10 text-slate-300 hover:text-white transition-all flex items-center gap-2"
               >
-                <Mail className="w-4 h-4" />
+                <Mail className="w-4 h-4 text-slate-400" />
                 <span>Open Mail Client ↗</span>
               </a>
             </div>
 
-            <div className="flex items-center gap-3 pt-6 border-t border-white/[0.08] w-full text-slate-400 font-mono text-xs">
+            <div className="flex items-center gap-4 text-xs font-mono text-slate-400 pt-4 border-t border-white/[0.07]">
               <a
                 href="https://github.com/preetdalal"
                 target="_blank"
                 rel="noopener noreferrer"
-                className="hover:text-brand-ice transition-colors flex items-center gap-1"
+                className="hover:text-white transition-colors flex items-center gap-1.5"
               >
                 <Github className="w-4 h-4" />
                 <span>GitHub</span>
@@ -75,7 +79,7 @@ export default function Contact() {
                 href="/resume.pdf"
                 target="_blank"
                 rel="noopener noreferrer"
-                className="hover:text-brand-ice transition-colors flex items-center gap-1"
+                className="hover:text-white transition-colors flex items-center gap-1.5"
               >
                 <FileText className="w-4 h-4" />
                 <span>Resume.pdf</span>
@@ -83,70 +87,71 @@ export default function Contact() {
             </div>
           </div>
 
-          {/* Right Column: Contact Form */}
-          <div className="lg:col-span-6 bg-bg-card border border-white/[0.08] rounded-xl p-6 sm:p-8 shadow-card backdrop-blur-md">
-            <h3 className="font-heading text-xl font-bold text-white mb-6">
-              Send a Direct Message
+          {/* Right Form */}
+          <div className="md:col-span-7 bg-bg-card border border-white/[0.07] rounded-xl p-6 sm:p-7">
+            <h3 className="font-heading text-lg font-bold text-white mb-5">
+              Send a Message
             </h3>
 
             {formSent ? (
-              <div className="bg-telemetry-green/10 border border-telemetry-green/30 rounded-lg p-6 text-center text-telemetry-green font-mono text-sm flex flex-col items-center gap-2">
-                <Check className="w-6 h-6 text-telemetry-green" />
+              <div className="p-6 text-center text-emerald-400 font-mono text-sm bg-emerald-500/10 border border-emerald-500/20 rounded-lg flex flex-col items-center gap-2">
+                <Check className="w-5 h-5" />
                 <span className="font-bold">Message Dispatched!</span>
                 <span className="text-xs text-slate-300">
-                  Thank you for reaching out. I will respond to your inquiry promptly.
+                  Thank you for reaching out. I will get back to you shortly.
                 </span>
               </div>
             ) : (
-              <form onSubmit={handleFormSubmit} className="space-y-4 font-mono text-xs sm:text-sm">
+              <form onSubmit={handleFormSubmit} className="space-y-4 text-xs font-mono">
                 <div>
-                  <label className="block text-slate-300 mb-1 font-medium">Your Name</label>
+                  <label className="block text-slate-300 mb-1">Your Name</label>
                   <input
                     type="text"
                     required
                     value={formData.name}
                     onChange={(e) => setFormData({ ...formData, name: e.target.value })}
                     placeholder="Jane Doe"
-                    className="w-full bg-black/40 border border-white/14 rounded-md px-3.5 py-2.5 text-white placeholder:text-slate-600 focus:outline-none focus:border-brand-ice focus:ring-1 focus:ring-brand-ice transition-all"
+                    className="w-full bg-[#0d0f14] border border-white/10 rounded-lg px-3.5 py-2.5 text-white placeholder:text-slate-600 focus:outline-none focus:border-accent-blue transition-colors text-xs font-mono"
                   />
                 </div>
 
                 <div>
-                  <label className="block text-slate-300 mb-1 font-medium">Your Email Address</label>
+                  <label className="block text-slate-300 mb-1">Your Email</label>
                   <input
                     type="email"
                     required
                     value={formData.email}
                     onChange={(e) => setFormData({ ...formData, email: e.target.value })}
                     placeholder="jane@company.com"
-                    className="w-full bg-black/40 border border-white/14 rounded-md px-3.5 py-2.5 text-white placeholder:text-slate-600 focus:outline-none focus:border-brand-ice focus:ring-1 focus:ring-brand-ice transition-all"
+                    className="w-full bg-[#0d0f14] border border-white/10 rounded-lg px-3.5 py-2.5 text-white placeholder:text-slate-600 focus:outline-none focus:border-accent-blue transition-colors text-xs font-mono"
                   />
                 </div>
 
                 <div>
-                  <label className="block text-slate-300 mb-1 font-medium">Message / Project Inquiry</label>
+                  <label className="block text-slate-300 mb-1">Message</label>
                   <textarea
                     rows={4}
                     required
                     value={formData.message}
                     onChange={(e) => setFormData({ ...formData, message: e.target.value })}
-                    placeholder="Tell me about your infrastructure, backend service, or collaboration opportunity..."
-                    className="w-full bg-black/40 border border-white/14 rounded-md px-3.5 py-2.5 text-white placeholder:text-slate-600 focus:outline-none focus:border-brand-ice focus:ring-1 focus:ring-brand-ice transition-all resize-none"
+                    placeholder="Tell me about your role, project, or collaboration..."
+                    className="w-full bg-[#0d0f14] border border-white/10 rounded-lg px-3.5 py-2.5 text-white placeholder:text-slate-600 focus:outline-none focus:border-accent-blue transition-colors text-xs font-mono resize-none"
                   />
                 </div>
 
                 <button
                   type="submit"
-                  className="w-full font-heading font-semibold text-sm py-3 rounded bg-gradient-to-r from-brand-cobalt to-brand-royal hover:from-brand-blue hover:to-brand-cobalt border border-brand-ice/50 text-white shadow-glow transition-all duration-150 flex items-center justify-center gap-2 cursor-pointer mt-2"
+                  className="w-full py-2.5 rounded-lg bg-accent-cobalt hover:bg-accent-blue text-white font-heading font-semibold text-sm transition-colors flex items-center justify-center gap-2 cursor-pointer mt-2"
                 >
-                  <Send className="w-4 h-4" />
-                  <span>Transmit Message</span>
+                  <Send className="w-3.5 h-3.5" />
+                  <span>Send Message</span>
                 </button>
               </form>
             )}
           </div>
 
         </div>
+
       </div>
     </section>
   );
