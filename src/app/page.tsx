@@ -3,9 +3,9 @@
 import React from 'react';
 import Navbar from '@/components/Navbar';
 import Hero from '@/components/Hero';
+import Education from '@/components/Education';
 import ProjectsGrid from '@/components/ProjectsGrid';
 import StackMatrix from '@/components/StackMatrix';
-import Education from '@/components/Education';
 import Contact from '@/components/Contact';
 import Footer from '@/components/Footer';
 
@@ -15,17 +15,17 @@ export default function Home() {
       {/* Navigation */}
       <Navbar />
 
-      {/* Hero Section */}
+      {/* Hero / About */}
       <Hero />
+
+      {/* Education (ON TOP) */}
+      <Education />
 
       {/* Projects */}
       <ProjectsGrid />
 
-      {/* Skills / Tech Stack */}
+      {/* Skills & Awards */}
       <StackMatrix />
-
-      {/* Education */}
-      <Education />
 
       {/* Contact */}
       <Contact />

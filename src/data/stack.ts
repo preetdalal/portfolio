@@ -1,89 +1,26 @@
-export interface StackCategory {
+export interface SkillCategory {
   title: string;
-  icon: string;
-  items: string[];
+  skills: string[];
 }
 
-export const STACK_CATEGORIES: StackCategory[] = [
+export const SKILLS_DATA: SkillCategory[] = [
   {
-    title: "Container & Orchestration",
-    icon: "☸",
-    items: [
-      "Kubernetes (K8s)",
-      "Docker",
-      "Multi-stage Builds",
-      "Helm 3",
-      "HPA Autoscaling",
-      "Kind / Minikube",
-      "Ingress NGINX",
-      "Docker Compose"
-    ]
+    title: "Languages",
+    skills: ["Java", "Python", "TypeScript", "SQL"]
   },
   {
-    title: "CI/CD & GitOps",
-    icon: "⚡",
-    items: [
-      "GitHub Actions",
-      "GitOps Workflows",
-      "Linux / Bash Scripting",
-      "Trivy Vulnerability Scanner",
-      "Flake8 / Checkstyle",
-      "Automated Testing",
-      "Semantic Versioning"
-    ]
+    title: "Frameworks & Libraries",
+    skills: ["Spring Boot", "FastAPI", "React", "Next.js", "PyTorch", "TensorFlow", "scikit-learn"]
   },
   {
-    title: "Observability & SRE",
-    icon: "📊",
-    items: [
-      "Prometheus",
-      "Grafana Dashboards",
-      "PromQL Queries",
-      "Metrics Scraping",
-      "Alertmanager",
-      "System Reliability",
-      "SLA / SLO Tracking"
-    ]
-  },
+    title: "Tools & Technologies",
+    skills: ["Docker", "Kubernetes", "Git", "Linux", "PostgreSQL", "Redis", "Prometheus", "Grafana"]
+  }
+];
+
+export const AWARDS_DATA = [
   {
-    title: "Backend Engineering",
-    icon: "☕",
-    items: [
-      "Java 17",
-      "Spring Boot 3",
-      "Spring Security 6",
-      "FastAPI (Python)",
-      "RESTful API Design",
-      "PostgreSQL",
-      "Redis Caching",
-      "Flyway Migrations",
-      "Testcontainers"
-    ]
-  },
-  {
-    title: "MLOps & Applied AI",
-    icon: "🧠",
-    items: [
-      "PyTorch",
-      "TorchScript",
-      "Model Containerization",
-      "Hugging Face",
-      "OpenCV",
-      "Inference Optimization",
-      "Dataset Pipelines"
-    ]
-  },
-  {
-    title: "Core Languages",
-    icon: "💻",
-    items: [
-      "Python 3.x",
-      "Java",
-      "C++",
-      "Bash / Shell",
-      "SQL",
-      "TypeScript",
-      "YAML / JSON"
-    ]
+    title: "UGEE Rank 53",
+    description: "Ranked 53 in the University Grants Entrance Examination"
   }
 ];
